@@ -271,7 +271,7 @@
 					  <!-- 虚拟路径 -->
 					   <contextPath>/pic/</contextPath>
 					   <!-- 物理路径 -->
-					   <resourceBase>/resource/pic/</resourceBase>
+					   <resourceBase>D:/xiaoyi/1707E-CMS/shixiaofei-serinal_cms/src/main/webapp/resource/pic/</resourceBase>
 					 </jettyWebAppContext>
 					</contextHandlers>
 					<!-- 间隔扫描时间 -->

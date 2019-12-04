@@ -12,6 +12,7 @@
 		white-space: nowrap; /*不换行的*/
 		overflow: hidden;/*超出范围隐藏*/
 		text-overflow:ellipsis; /*超出用省略号 */
+			
 	
 	}
 
@@ -20,8 +21,8 @@
 			北京八维研修学院大数据1707E石晓楠打造    
 		</div>
 		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-					      今	   						日						头						条
-		</div>	
+			<!-- TIMESTAMP -->		      今	   						日						头						条
+		</div>
 <title></title>
 <body>
 <nav aria-label="breadcrumb">
@@ -162,7 +163,7 @@
 							<hr>
 							<c:forEach items="${info.list}" var="h">
 								<div class="media">
-									<img src="resource/pic/${h.picture}" class="mr-3" alt="..."
+									<img src="resource/pic/${h.picture}" class="mr-3 rounded" alt="..."
 										style="height: 101px; width: 156px">
 									<div class="media-body">
 										<h3>
@@ -214,15 +215,28 @@
 					</div>
 				</div>
 
-	        <!-- 图片集 -->
+	       
+			
+	      <!-- 图片集 -->
 				<div class="card" style="width: 18rem;">
 					<div class="card-header">图片集</div>
 					<div class="card-body">
-						
+					 <c:forEach items="${picInfo.list}" var="p">
+						<div class="media">
+							<img src="/pic/${p.picture }" class="mr-3 rounded" alt="..." style="height: 50px;width: 80px">
+							<div class="media-body">
+								<h5 class="mt-0"><a href="/articlepic?id=${p.id }"
+												target="_blank">${p.title}</a></h5>
+							
+							</div>
+						</div>
+						<hr>
+                   </c:forEach>
 					</div>
 				</div>
-				 <!-- 友情链接 -->
-				<div class="card" style="width: 18rem;">
+
+	 <!-- 友情链接 -->
+				 <div class="card" style="width: 18rem;">
 					<div class="card-header">友情链接</div>
 					<div class="card-body">
 						<a href="https://www.baidu.com/?tn=99669880_hao_pg">
@@ -236,24 +250,29 @@
 			</div>
 
 		</div>
+		 <!-- 友情链接 -->
+		<div class="row">
+		  
+		  <div class="col-12">
+		    <c:forEach items="${linksInfo.list}" var="l">
+		     <a href="${l.url}" target="_blank">${l.text }</a>  &nbsp;
+		    </c:forEach>
+		  
+		  
+		  </div>
+		
+		</div>
 
 	</div>
-
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	<script type="text/javascript">
-	
-		$("#myArticle").click();
-		$("#center").load("my/selectByUser")
-	
-
 		//分页
 		function goPage(page) {
-			var url = "/?page=" + page+"&channelId="+'${article.channelId}'
+			var url = "/?page=" + page + "&channelId=" + '${article.channelId}'
 			location = url;
 		}
+	
 	</script>
-	<div class="progress">
-  <!-- <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div> -->
-</div>
+
 </body>
 </html>

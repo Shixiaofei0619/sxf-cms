@@ -2,8 +2,6 @@ package com.sxf.cms.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.sxf.cms.domain.Article;
 import com.sxf.cms.domain.ArticleWithBLOBs;
 
@@ -31,6 +29,4 @@ public interface ArticleMapper {
     int updateByPrimaryKeyWithBLOBs(ArticleWithBLOBs record);
 
     int updateByPrimaryKey(Article record);
-
-	void updateHits(@Param("id")Integer id);
 }

@@ -37,7 +37,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	public ArticleWithBLOBs selectByPrimaryKey(Integer id) {
-		articleMapper.updateHits(id);
+		//articleMapper.updateHits(id);
 		return articleMapper.selectByPrimaryKey(id);
 	}
 

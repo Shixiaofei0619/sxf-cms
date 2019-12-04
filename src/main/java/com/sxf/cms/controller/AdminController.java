@@ -5,14 +5,18 @@ import javax.annotation.Resource;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sxf.cms.domain.Article;
 import com.sxf.cms.domain.ArticleWithBLOBs;
+import com.sxf.cms.domain.Links;
 import com.sxf.cms.domain.User;
 import com.sxf.cms.service.ArticleService;
+import com.sxf.cms.service.LinksService;
 import com.sxf.cms.service.UserService;
 import com.sxf.cms.utils.Result;
 import com.sxf.cms.utils.ResultUtil;
@@ -27,6 +31,44 @@ public class AdminController {
 
 	@Resource
 	private UserService userService;
+	
+	@Resource
+	private LinksService linksService;
+	/**
+	 * 
+	 * @Title: selects 
+	 * @Description: 维护友情链接--列表
+	 * @return
+	 * @return: String
+	 */
+	@GetMapping("links/selects")
+	public String selects(Model model,@RequestParam(defaultValue = "1") Integer page,
+			@RequestParam(defaultValue = "3") Integer pageSize) {
+		PageInfo<Links> info = linksService.selects(page, pageSize);	
+		model.addAttribute("info", info);
+		return "admin/links/links";
+	}
+	/**
+	 * 
+	 * @Title: add 
+	 * @Description: 跳转到增加友情链接页面
+	 * @return
+	 * @return: String
+	 */
+	@GetMapping("links/add")
+	public String add() {
+		return "admin/links/add";
+		
+	}
+	
+
+	@SuppressWarnings("unchecked")
+	@ResponseBody
+	@PostMapping("links/add")
+	public Result<Links> add(Links links){
+		linksService.insert(links);
+		return ResultUtil.success();
+	}
 
 	@RequestMapping("user/users")
 	public String users(Model model, User user, @RequestParam(defaultValue = "1") Integer page,
@@ -96,6 +138,7 @@ public class AdminController {
 	@RequestMapping("article/articles")
 	public String articles(Model model, Article article, @RequestParam(defaultValue = "1") Integer page,
 			@RequestParam(defaultValue = "3") Integer pageSize) {
+	
 		PageInfo<Article> info = articleService.selects(article, page, pageSize);
 		model.addAttribute("info", info);// 封装的查询结国
 		model.addAttribute("article", article);// 封装的查询
