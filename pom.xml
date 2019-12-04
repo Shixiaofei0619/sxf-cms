@@ -262,7 +262,7 @@
 				<configuration>
 					<httpConnector>
 						<!-- 端口号 -->
-						<port>80</port>
+						<port>90</port>
 						<!-- 访问路径 -->
 						<host>localhost</host>
 					</httpConnector>
